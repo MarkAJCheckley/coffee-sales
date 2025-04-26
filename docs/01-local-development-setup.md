@@ -1,4 +1,3 @@
-# LOCAL DEVELOPMENT
 ## Requirements:
 Note: This local setup was aimed at macOS, if you need to tweak it feel free to just point us to the changed configuration.
 
