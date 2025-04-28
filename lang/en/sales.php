@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'no_previous_sales' => 'There are no previous sales to show.',
     'previous_sales' => 'Previous Sales',
     'product' => 'Product',
     'record_sale' => 'Record Sale',

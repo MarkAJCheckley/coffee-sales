@@ -37,31 +37,35 @@
                             <button id="record-sale" class="self-end border-none h-10 bg-indigo-500 text-white font-bold py-1 px-2 rounded" type="submit">{{ __('sales.record_sale') }}</button>
                         </div>
                     </form>
-                    <h1 class="py-2 text-xl font-bold">{{ __('sales.previous_sales') }}</h1>
-                    <div class="">
-                        <table class="pt-3 w-full h-auto text-left table-auto min-w-max border border-black">
-                            <thead>
-                                <tr class="bg-gray-300 px-2">
-                                    <th>{{ __('sales.product') }}</th>
-                                    <th class="border-l border-l-black">{{ __('sales.quantity') }}</th>
-                                    <th class="border-l border-l-black">{{ __('sales.unit_cost') }}</th>
-                                    <th class="border-l border-l-black">{{ __('sales.selling_price') }}</th>
-                                    <th class="border-l border-l-black">{{ __('sales.sold_at') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="max-h-[330px] overflow-y-auto">
-                                @foreach($previous_sales as $previous_sale)
-                                    <tr class="even:bg-gray-100 px-2">
-                                        <td class="border-l border-l-black">{{ $previous_sale->product->name }}</td>
-                                        <td class="border-l border-l-black">{{ $previous_sale->quantity }}</td>
-                                        <td class="border-l border-l-black">{{ $previous_sale->unit_cost }}</td>
-                                        <td class="border-l border-l-black">£{{ $previous_sale->selling_price }}</td>
-                                        <td class="border-l border-l-black">{{ substr($previous_sale->created_at, 0, 16) }}</td>
+                    @if(count($previous_sales))
+                        <h1 class="py-2 text-xl font-bold">{{ __('sales.previous_sales') }}</h1>
+                        <div class="h-100">
+                            <table class="pt-3 w-full text-left table-auto min-w-max border overflow-hidden border-black">
+                                <thead>
+                                    <tr class="bg-gray-300 px-2">
+                                        <th>{{ __('sales.product') }}</th>
+                                        <th class="border-l border-l-black">{{ __('sales.quantity') }}</th>
+                                        <th class="border-l border-l-black">{{ __('sales.unit_cost') }}</th>
+                                        <th class="border-l border-l-black">{{ __('sales.selling_price') }}</th>
+                                        <th class="border-l border-l-black">{{ __('sales.sold_at') }}</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody class="overflow-y-auto">
+                                    @foreach($previous_sales as $previous_sale)
+                                        <tr class="even:bg-gray-100 px-2">
+                                            <td>{{ $previous_sale->product->name }}</td>
+                                            <td class="border-l border-l-black">{{ $previous_sale->quantity }}</td>
+                                            <td class="border-l border-l-black">{{ $previous_sale->unit_cost }}</td>
+                                            <td class="border-l border-l-black">£{{ $previous_sale->selling_price }}</td>
+                                            <td class="border-l border-l-black">{{ substr($previous_sale->created_at, 0, 16) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="py-2">{{ __('sales.no_previous_sales') }}</div>
+                    @endif
                 </div>
             </div>
         </div>
